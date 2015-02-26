@@ -11,6 +11,7 @@ $(document).on('ready', function(){
 
   $('#searchBtn').on('click', function(){
     $.get('/countries', function(req, res){
+      $('.theCountries').empty();
       var theSearch = $('#searchBox').val().toLowerCase();
       var searchResult = req.filter(function(element){
         if(element.name.toLowerCase()===theSearch){

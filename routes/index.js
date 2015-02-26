@@ -13,7 +13,7 @@ router.get('/countries', function(req, res){
 });
 
 router.get('/search', function(req,res){
-  // res.send();
+  console.log(req);
 });
 
 module.exports = router;
