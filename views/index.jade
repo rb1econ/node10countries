@@ -3,5 +3,10 @@ extends layout
 block content
   h1= title
   p Welcome to #{title}
+  form.form-horizontal(method="GET", action="/search")
+    .form-group
+      label(for="searchBox") Search for a Country
+      input(type="text", class="form-control", id="searchBox", placeholder="A country...")
+    a(class="btn btn-danger", type="submit", href="/search", id="searchBtn") Search!
   button#loadCountries.btn.btn-default Load Countries
   .theCountries

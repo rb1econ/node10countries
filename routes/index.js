@@ -12,4 +12,8 @@ router.get('/countries', function(req, res){
   res.send(models);
 });
 
+router.get('/search', function(req,res){
+  // res.send();
+});
+
 module.exports = router;
