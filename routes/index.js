@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
 var someCountries = require('../models/countries.json');
+var mongoStuff = require('../models/mongoStuff.js');
 // var searchFilter = require('../models/searchFunction.js');
 
 /* GET home page. */
@@ -24,6 +25,10 @@ router.post('/search', function(req,res,data){
       });
   console.log('THIS IS THE SEARCH RESULT::::', searchResult);
   res.send({result: searchResult});
+});
+
+router.post('/modifyCountry', function(){
+
 });
 
 module.exports = router;
