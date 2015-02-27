@@ -10,20 +10,26 @@ $(document).on('ready', function(){
   });
 
   $('#searchBtn').on('click', function(){
-    $.get('/countries', function(req, res){
-      $('.theCountries').empty();
-      var theSearch = $('#searchBox').val().toLowerCase();
-      var searchResult = req.filter(function(element){
-        if(element.name.toLowerCase()===theSearch){
-          return element;
-        }
-      });
-    var actualResult = searchResult[0];
-    $('.theCountries').append('<ul><li>'+actualResult.name+'</li><li><em>French Name:</em> '+actualResult.frenchName+'</li><li><em>Local Name:</em> '+actualResult.localName+'</li><li><em>Region:</em> '+actualResult.region+'</li></ul>')
-    // console.log('SEARCH RESULT: ', searchResult[0]);
-    // console.log('SEARCH Queery', theSearch);
-    });
-  });
 
+    // $.get('/countries', function(req, res){
+    //   $('.theCountries').empty();
+    //   var theSearch = $('#searchBox').val().toLowerCase();
+    //   var searchResult = req.filter(function(element){
+    //     if(element.name.toLowerCase()===theSearch){
+    //       return element;
+    //     }
+    //   });
+    
+    var theSearch = $('#searchBox').val().toLowerCase();
+    $.post('/search', {theSearch:theSearch},function(data){
+      $('.theCountries').empty();
+      console.log('this is data:::::',data.result[0]);
+      var actualResult = data.result[0];
+      $('.theCountries').append('<ul><li>'+actualResult.name+'</li><li><em>French Name:</em> '+actualResult.frenchName+'</li><li><em>Local Name:</em> '+actualResult.localName+'</li><li><em>Region:</em> '+actualResult.region+'</li></ul>');
+    });
+
+    
+    
+  });
 
 });

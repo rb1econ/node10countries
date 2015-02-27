@@ -1,6 +1,7 @@
 var express = require('express');
 var router = express.Router();
-var models = require('../models/countries.json');
+var someCountries = require('../models/countries.json');
+// var searchFilter = require('../models/searchFunction.js');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
@@ -9,11 +10,20 @@ router.get('/', function(req, res, next) {
 
 router.get('/countries', function(req, res){
   // console.log(models);
-  res.send(models);
+  res.send(someCountries);
 });
 
-router.get('/search', function(req,res){
-  console.log(req);
+router.post('/search', function(req,res,data){
+  
+  var searchedFor = req.body.theSearch;
+  console.log('THIS IS theSearch::::', searchedFor);
+  var searchResult = someCountries.filter(function(element){
+        if(element.name.toLowerCase()===searchedFor){
+          return element;
+        }
+      });
+  console.log('THIS IS THE SEARCH RESULT::::', searchResult);
+  res.send({result: searchResult});
 });
 
 module.exports = router;
